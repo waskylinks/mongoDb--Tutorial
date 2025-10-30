@@ -65,15 +65,25 @@ async function runQueryExamples() {
         // const selectedFields = await User.find().select('name email -_id');
         // console.log(selectedFields, 'selected fields');
 
-        
+        /*
         const selectedFields = await User.find().select({
             name: 1,    // include `name`
             email: 1,   // include `email`
             _id: 0      // exclude `_id`
         });
-        
 
-        console.log(selectedFields, 'selected fields');
+        */
+    //    console.log(selectedFields, 'selected fields');
+
+        // get first five users minus first
+        //const limitedUsers = await User.find().limit(5).skip(1);
+
+        const limitedUsers = await User.find()
+        .sort({ name: 1 }) // ascending by name
+        .limit(5)
+        .skip(1);
+
+        console.log(limitedUsers, "first five users minus first");
 
 
     } catch (err) {
