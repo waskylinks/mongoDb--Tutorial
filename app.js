@@ -25,11 +25,11 @@ async function runQueryExamples() {
     try{
         // create a new document
         const newUser = await User.create({
-            name: 'Deleted User',
-            email: 'deleteduser@gmail.com',
-            age: 7,
+            name: 'Updated User',
+            email: 'updateduser@gmail.com',
+            age: 77,
             isActive: true,
-            tags: ['Tailor', 'Teacher']
+            tags: ['Fresh', 'Update']
         });
 
         // const newUser = new User({
@@ -95,8 +95,19 @@ async function runQueryExamples() {
         // console.log(countDocuments, "documents");
 
         //deleted user
-        const deletedUser = await User.findByIdAndDelete(newUser._id);
-        console.log(deletedUser , '-> deleted user');
+        // const deletedUser = await User.findByIdAndDelete(newUser._id);
+        // console.log(deletedUser , '-> deleted user');
+
+        // update user
+        const updateUser = await User.findByIdAndUpdate(newUser._id, {
+            $set : {age: 100}, 
+            $push : {tags: 'updated'}
+        }, {
+            new: true
+        })
+
+        console.log(updateUser, 'updated user');
+
 
 
     } catch (err) {
