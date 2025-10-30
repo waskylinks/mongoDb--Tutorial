@@ -23,14 +23,14 @@ const User = mongoose.model('User', userSchema);
 //create a simple function
 async function runQueryExamples() {
     try{
-        //create a new document
-        // const newUser = await User.create({
-        //     name: 'Simsat Doe',
-        //     email: 'sim1@gmail.com',
-        //     age: 25,
-        //     isActive: true,
-        //     tags: ['Developer']
-        // });
+        // create a new document
+        const newUser = await User.create({
+            name: 'miriam Doe',
+            email: 'miriam@gmail.com',
+            age: 27,
+            isActive: true,
+            tags: ['Tailor', 'Teacher']
+        });
 
         // const newUser = new User({
         //     name: 'Jslow Doe',
@@ -41,23 +41,23 @@ async function runQueryExamples() {
         // });
 
         // await newUser.save();
-
-        // console.log('New User Created:', newUser);
+        console.log('New User Created:', newUser);
 
         //get all users
-
         // const allUsers = await User.find();
         // console.log('All Users:', allUsers);
 
         //get specific things from users
-
         // const getUsersActiveStatus = await User.find({ isActive: true });
         // console.log('Users with isActive false:', getUsersActiveStatus);
 
         //get single simsat doe
+        // const getSimsatUser = await User.findOne({ name: 'Simsat Doe'});
+        // console.log('Get Simsat Doe:', getSimsatUser);
 
-        const getSimsatUser = await User.findOne({ name: 'Simsat Doe'});
-        console.log('Get Simsat Doe:', getSimsatUser);
+        // get last created user
+        const getLastCreatedUserByUserId = await User.findById(newUser._id)
+        console.log(getLastCreatedUserByUserId);
 
     } catch (err) {
         console.error('Error during query examples:', err);
