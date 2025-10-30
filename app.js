@@ -24,13 +24,13 @@ const User = mongoose.model('User', userSchema);
 async function runQueryExamples() {
     try{
         // create a new document
-        const newUser = await User.create({
-            name: 'miriam Doe',
-            email: 'miriam@gmail.com',
-            age: 27,
-            isActive: true,
-            tags: ['Tailor', 'Teacher']
-        });
+        // const newUser = await User.create({
+        //     name: 'miriam Doe',
+        //     email: 'miriam@gmail.com',
+        //     age: 27,
+        //     isActive: true,
+        //     tags: ['Tailor', 'Teacher']
+        // });
 
         // const newUser = new User({
         //     name: 'Jslow Doe',
@@ -41,7 +41,7 @@ async function runQueryExamples() {
         // });
 
         // await newUser.save();
-        console.log('New User Created:', newUser);
+        // console.log('New User Created:', newUser);
 
         //get all users
         // const allUsers = await User.find();
@@ -56,8 +56,25 @@ async function runQueryExamples() {
         // console.log('Get Simsat Doe:', getSimsatUser);
 
         // get last created user
-        const getLastCreatedUserByUserId = await User.findById(newUser._id)
-        console.log(getLastCreatedUserByUserId);
+        // const getLastCreatedUserByUserId = await User.findById(newUser._id)
+        // console.log(getLastCreatedUserByUserId, "Get last created user");
+
+        //get first created user
+        
+        //get only the name and email property
+        // const selectedFields = await User.find().select('name email -_id');
+        // console.log(selectedFields, 'selected fields');
+
+        
+        const selectedFields = await User.find().select({
+            name: 1,    // include `name`
+            email: 1,   // include `email`
+            _id: 0      // exclude `_id`
+        });
+        
+
+        console.log(selectedFields, 'selected fields');
+
 
     } catch (err) {
         console.error('Error during query examples:', err);
