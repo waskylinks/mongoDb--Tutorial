@@ -85,9 +85,14 @@ async function runQueryExamples() {
         // .skip(1);
         // console.log(limitedUsers, "first five users minus first");
 
-        const sortedUsers = await User.find()
-        .sort({age: -1}) //descending order
-        console.log(sortedUsers, "users sorted by age descending order");
+        // const sortedUsers = await User.find()
+        // .sort({age: -1}) //descending order +1 ascending
+        // console.log(sortedUsers, "users sorted by age descending order");
+
+        const countDocuments = await User.countDocuments({
+            isActive : false
+        });
+        console.log(countDocuments, "documents");
 
 
     } catch (err) {
