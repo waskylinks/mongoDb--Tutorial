@@ -76,14 +76,18 @@ async function runQueryExamples() {
     //    console.log(selectedFields, 'selected fields');
 
         // get first five users minus first
-        
+
         //const limitedUsers = await User.find().limit(5).skip(1);
 
-        const limitedUsers = await User.find()
-        .sort({ name: 1 }) // ascending by name
-        .limit(5)
-        .skip(1);
-        console.log(limitedUsers, "first five users minus first");
+        // const limitedUsers = await User.find()
+        // .sort({ name: 1 }) // ascending by name
+        // .limit(5)
+        // .skip(1);
+        // console.log(limitedUsers, "first five users minus first");
+
+        const sortedUsers = await User.find()
+        .sort({age: -1}) //descending order
+        console.log(sortedUsers, "users sorted by age descending order");
 
 
     } catch (err) {
